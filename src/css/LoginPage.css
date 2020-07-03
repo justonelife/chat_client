@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('general.css');
+
+.login-page {
+    height: 100vh;
+    width: 100%;
+    background: var(--main-theme-color);
+}
+.login-page__header {
+    width: 100%;
+    height: 75px;
+    padding: 20px 0;
+}
+.login-page__nav {
+    width: 90%;
+}
+.logo {
+    background-image: url('./wachat_logo.png'); /*need find way to public directory*/
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 200px;
+    height: 50px;
+    float: left;
+}
+.create-btn {
+    width: 265px;
+    height: 58px;
+    float: right;
+    background: transparent;
+    border: 3px solid var(--second-theme-color);
+    color: var(--second-theme-color);
+    border-radius: 30px;
+    font-family: 'Russo One', sans-serif;
+    text-transform: capitalize;
+    font-size: 25px;
+}

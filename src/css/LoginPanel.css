@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+@import url('./general.css');
+
+.login-panel {
+    width: 529px;
+    height: 604px;
+    background: rgba(79, 79, 79, .27);
+    padding: 30px 48px 26px 48px;
+    border-radius: 64px;
+}
+.login-panel__header {
+    font-family: 'Russo One', sans-serif;
+    color: var(--second-theme-color);
+    font-size: 50px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    height: 59px;
+}
+.finput {
+    width: 434px;
+    height: 70px;
+    background: var(--second-theme-color);
+    border-radius: 35px;
+    padding: 0 30px;
+}
+.finput__i {
+    height: inherit;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--main-theme-color);
+}
+.login-panel__lbtn {
+    width: 243px;
+    height: 89px;
+    border-radius: 45px;
+    background-color: #55E492;
+    margin-top: 50px;
+    margin-left: 95px;
+    font-size: 25px;
+    font-family: 'Russo One', sans-serif;
+    text-transform: uppercase;
+    color: var(--second-theme-color);
+}
+.login-panel__ntext {
+    font-size: 17px;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--second-theme-color);
+    width: 336px;
+    height: 22px;
+}
+.login-panel__ntext::first-letter {
+    text-transform: uppercase;
+}
+
+.social-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 238px;
+}
+.social-btns__btn {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    color: var(--second-theme-color);
+    font-size: 25px;
+}
+.social-btns--gg {
+    background: #E52731;
+}
+.social-btns--fb {
+    background: #3B5999;
+}
+.social-btns--tt {
+    background: #1EA0F1;
+}

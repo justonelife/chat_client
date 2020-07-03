@@ -1,0 +1,40 @@
+:root {
+    --main-theme-color: #26262B;
+    --second-theme-color: #fff;
+}
+.center-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.center-line {
+    margin: 0 auto;
+}
+::-webkit-input-placeholder {
+    text-transform: capitalize;
+    color: var(--main-theme-color);
+}
+:-moz-placeholder { 
+    text-transform: capitalize;
+    color: var(--main-theme-color);
+ }
+ 
+ ::-moz-placeholder {  
+    text-transform: capitalize;
+    color: var(--main-theme-color);
+ }
+ 
+ :-ms-input-placeholder { 
+    text-transform: capitalize;
+    color: var(--main-theme-color);
+ }
+ .mt-21 {
+     margin-top: 21px;
+ }
+ .mt-33 {
+     margin-top: 33px;
+ }
+ .mt-41 {
+     margin-top: 41px;
+ }
