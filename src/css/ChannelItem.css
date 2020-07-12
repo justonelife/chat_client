@@ -1,0 +1,36 @@
+@import url('./general.css');
+
+.channel {
+    background: var(--dark-theme-chatpage-color-main);
+    display: flex;
+    align-items: center;
+    height: 32px;
+    width: 224px;
+    padding: 0 15px;
+    border-radius: 5px;
+    margin-bottom: 4px;
+}
+.channel:hover {
+    cursor: pointer;
+    background: var(--dark-theme-chatpage-color-two);
+}
+.channel:hover .channel__invite, .channel:hover .channel__setting {
+    opacity: 1;
+}
+.active {
+    background: var(--dark-theme-chatpage-color-two);
+}
+.channel__name {
+    color: var(--dark-theme-chatpage-text-color);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bolder;
+    flex-grow: 2;
+}
+.channel__invite, .channel__setting {
+    background: transparent;
+    color: var(--dark-theme-chatpage-text-color);
+    font-size: 15px;
+    margin-left: 7px;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}

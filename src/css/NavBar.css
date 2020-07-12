@@ -1,0 +1,6 @@
+@import url('./general.css');
+
+.NavBar-wr {
+    background: var(--dark-theme-chatpage-color-main);
+    padding: 0 10px;
+}

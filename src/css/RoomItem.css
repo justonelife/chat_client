@@ -1,0 +1,32 @@
+@import url('./general.css');
+
+.room-item {
+    display: flex;
+    width: 224px;
+    cursor: pointer;
+}
+.room-item__name {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    color: var(--dark-theme-chatpage-text-color);
+    text-transform: uppercase;
+    flex-grow: 1;
+    margin-left: 10px;
+    height: 40px;
+    line-height: 40px;;
+}
+.room-item:hover .room-item__name, 
+.room-item:hover .room-item__caretBtn,
+.room-item:hover .room-item__plusBtn {
+    color: var(--dark-theme-chatpage-text-color-hover);
+}
+.room-item__caretBtn, .room-item__plusBtn {
+    background: transparent;
+    color: var(--dark-theme-chatpage-text-color);
+}
+.room-item__caretBtn {
+    font-size: 20px;
+}
+.channels-list {
+    display: block;
+}

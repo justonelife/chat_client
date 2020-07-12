@@ -5,16 +5,17 @@ import ChatPage from './components/ChatPage';
 import SignUpPage from './components/SignUpPage';
 import './css/App.css';
 
-class App extends React.Component {
-    render() {
-        return (
-            <Router>
-                <Route path='/' exact component={LoginPage}></Route>
-                <Route path='/chat' component={ChatPage}></Route>
-                <Route path='/signup' component={SignUpPage}></Route>
-            </Router>
-        );
+const App = () => {
+    function onLoginClick() {
+        
     }
+    return (
+        <Router>
+            <Route path='/' exact component={LoginPage}></Route>
+            <Route path='/chat' component={ChatPage}></Route>
+            <Route path='/signup' component={SignUpPage}></Route>
+        </Router>
+    );
 }
 
 export default App;

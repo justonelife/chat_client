@@ -1,0 +1,8 @@
+@import url('./general.css');
+
+.chat-page {
+    background: var(--dark-theme-chatpage-color-two);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}

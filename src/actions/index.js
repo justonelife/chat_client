@@ -1,12 +1,27 @@
-export const typingUsername = (val) => {
+export const isLogged = () => {
     return {
-        action: 'TYPING_USERNAME',
-        payload: val
+        type: 'HAS_LOGIN'
     }
 }
-export const typingPassword = (val) => {
+export const openChannelSetting = () => {
     return {
-        action: 'TYPING_PASSWORD',
-        payload: val
+        type: 'OPEN_CHANNEL_SETTING'
+    }
+}
+export const closeChannelSetting = () => {
+    return {
+        type: 'CLOSE_CHANNEL_SETTING'
+    }
+}
+export const selectChannel = (data) => {
+    return {
+        type: 'SELECT_CHANNEL',
+        payload: data
+    }
+}
+export const grantUsername = (name) => {
+    return {
+        type: 'GRANT_USERNAME',
+        payload: name
     }
 }

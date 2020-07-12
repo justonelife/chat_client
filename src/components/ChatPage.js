@@ -1,11 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import NavBar from './NavBar';
+import '../css/ChatPage.css';
 
-class ChatPage extends React.Component {
-    render() {
+const ChatPage = () => {
+    const logState = useSelector(state => state.logStateReducer);
+
+    if (true) {
         return (
-            <div>chat page</div>
+            <div className='chat-page'>
+                <NavBar />
+            </div>
+        );
+    } else {
+        return (
+            <Redirect to="/" />
         );
     }
+    
 }
 
 export default ChatPage;
