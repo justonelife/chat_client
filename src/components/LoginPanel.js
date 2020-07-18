@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { isLogged, grantUsername } from '../actions';
+import { isLogged, saveUserInfo, saveRooms } from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/LoginPanel.css';
 
@@ -32,7 +32,11 @@ const LoginPanel = () => {
         .then(data => {
             if (data.allowLogin) {
                 disPatch(isLogged());
-                disPatch(grantUsername(username));
+                disPatch(saveUserInfo({
+                    nickname: data.nickname,
+                    avatar_url: data.avatar_url
+                }));
+                disPatch(saveRooms(data.rooms));
                 history.push('/chat');
             }
         });

@@ -2,8 +2,9 @@
 
 .room-item {
     display: flex;
-    width: 224px;
+    width: 300px;/*watch here*/
     cursor: pointer;
+    padding: 0 20px;
 }
 .room-item__name {
     font-family: 'Quicksand', sans-serif;

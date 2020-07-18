@@ -7,8 +7,13 @@ const RoomItem = (props) => {
     const name = props.name;
     const channelsList = props.channelsList;
     var selectedChannelItem = null;
+    var channelItems = [];
+
+    channelsList.forEach(val => channelItems.push(<ChannelItem name={val.name}
+                                                               type={val.type}
+                                                               key={val.name} />));//fix key 
     return (
-        <div>
+        <div className='mb-35'>
             <div className='room-item'>
                 <button className='room-item__caretBtn'>
                     <FontAwesomeIcon icon='caret-down' />
@@ -22,8 +27,7 @@ const RoomItem = (props) => {
             {selectedChannelItem}
 
             <div className='channels-list'>
-                <ChannelItem name={channelsList[0].channelName} />
-                <ChannelItem name={channelsList[1].channelName} />
+                {channelItems}
             </div>
         </div>
     )

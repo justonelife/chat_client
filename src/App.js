@@ -6,14 +6,17 @@ import SignUpPage from './components/SignUpPage';
 import './css/App.css';
 
 const App = () => {
-    function onLoginClick() {
-        
-    }
     return (
         <Router>
-            <Route path='/' exact component={LoginPage}></Route>
-            <Route path='/chat' component={ChatPage}></Route>
-            <Route path='/signup' component={SignUpPage}></Route>
+            <Route path='/' exact>
+                <LoginPage />
+            </Route>
+            <Route path='/chat'>
+                <ChatPage />
+            </Route>
+            <Route path='/signup'>
+                <SignUpPage />
+            </Route>
         </Router>
     );
 }

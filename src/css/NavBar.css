@@ -1,6 +1,26 @@
 @import url('./general.css');
 
-.NavBar-wr {
+.navbar-wr {
     background: var(--dark-theme-chatpage-color-main);
-    padding: 0 10px;
+}
+.navbar__header {
+    display: flex;
+    user-select: none;
+    height: 50px;
+    width: 100%;
+    padding: 0 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+}
+.navbar__header__title {
+    flex-grow: 1;
+    color: var(--dark-theme-chatpage-text-color);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    line-height: 50px;
+}
+.navbar__header__btn {
+    background: transparent;
+    color: var(--dark-theme-chatpage-text-color);
+    font-size: 20px;
 }

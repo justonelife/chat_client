@@ -3,25 +3,15 @@ export const isLogged = () => {
         type: 'HAS_LOGIN'
     }
 }
-export const openChannelSetting = () => {
+export const saveUserInfo = (data) => {
     return {
-        type: 'OPEN_CHANNEL_SETTING'
-    }
-}
-export const closeChannelSetting = () => {
-    return {
-        type: 'CLOSE_CHANNEL_SETTING'
-    }
-}
-export const selectChannel = (data) => {
-    return {
-        type: 'SELECT_CHANNEL',
+        type: 'SAVE_USER_INFO',
         payload: data
     }
 }
-export const grantUsername = (name) => {
+export const saveRooms = (rooms) => {
     return {
-        type: 'GRANT_USERNAME',
-        payload: name
+        type: 'SAVE_ROOMS',
+        payload: rooms
     }
 }

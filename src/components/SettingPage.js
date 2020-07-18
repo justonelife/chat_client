@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import '../css/SettingPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { closeChannelSetting } from '../actions';
 
 const SettingPage = (props) => {
 
-    const openSetting = useSelector(state => state.channelSettingReducer);
-    const disPatch = useDispatch();
+    const openSetting = props.isOpen;
     const [switchTab, setSwitchTab] = useState(0);
 
     const overviewTab = <div className='setting-page__content__inner'>
         <form>
-            <label className='label-input' htmlFor='name'>name</label>
+            <label className='label-input'>name</label>
             <div className='cp-finput'>
-                <input className='cp-finput__input' type='text' id='name' />
+                <input className='cp-finput__input' type='text'/>
             </div>
-            <label className='label-input' htmlFor='topic'>topic</label>
+            <label className='label-input'>topic</label>
             <div className='cp-ftextarea'>
-                <textarea className='cp-ftextarea__textarea' type='text' id='topic'></textarea>
+                <textarea className='cp-ftextarea__textarea' type='text'></textarea>
             </div>
         </form>
         <button className='setting-page__close'
-                onClick={() => disPatch(closeChannelSetting())}>
+                onClick={props.onClose}>
             <FontAwesomeIcon icon='times' />
         </button>
     </div>
@@ -47,7 +44,7 @@ const SettingPage = (props) => {
             </li>
         </ul>
         <button className='setting-page__close'
-                onClick={() => disPatch(closeChannelSetting())}>
+                onClick={props.onClose}>
             <FontAwesomeIcon icon='times' />
         </button>
     </div>
@@ -55,7 +52,7 @@ const SettingPage = (props) => {
     const statisticTab = <div className='setting-page__content__inner'>
         some chartjs here
         <button className='setting-page__close'
-                onClick={() => disPatch(closeChannelSetting())}>
+                onClick={props.onClose}>
             <FontAwesomeIcon icon='times' />
         </button>
     </div>

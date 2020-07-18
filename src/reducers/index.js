@@ -1,14 +1,12 @@
 import logStateReducer from './logStateReducer';
-import channelSettingReducer from './channelSettingReducer';
-import selectChannelReducer from './selectChannelReducer';
-import grantUsernameReducer from './grantUsernameReducer';
+import saveUserInfoReducer from './saveUserInfoReducer';
+import saveRoomsReducer from './saveRoomsReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-    logStateReducer: logStateReducer,
-    channelSettingReducer: channelSettingReducer,
-    sleectChannelReducer: selectChannelReducer,
-    grantUsernameReducer: grantUsernameReducer
+    logStateReducer,
+    saveUserInfoReducer,
+    saveRoomsReducer
 });
 
 export default rootReducer;

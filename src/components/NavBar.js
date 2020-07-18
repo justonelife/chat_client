@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import RoomItem from './RoomItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,46 +6,46 @@ import '../css/NavBar.css';
 
 const ROOMS = [
     {
-        roomName: 'web dev',
+        name: 'web dev',
         channels: [
             {
-                channelName: 'general',
+                name: 'javascript',
+                type: 1
             },
             {
-                channelName: 'javascript'
+                name: 'general',
+                type: 1
             }
         ]
+    },
+    {
+        name: 'onmyoji',
+        channels: [
+            'sum-rage-monster'
+        ]
     }
-]
+];
 
 const NavBar = () => {
-    const username = useSelector(state => state.grantUsernameReducer);
-    const url = 'http://localhost:5000/rooms';
-    useEffect(() => {
-        fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username
-            })
-        })
-        .then(res => console.log(res));
-    });
+    const userInfo = useSelector(state => state.saveUserInfoReducer);
+    const roomsData = ROOMS;
+    // useSelector(state => state.saveRoomsReducer);
+    var roomItems = [];
+    roomsData.forEach(val => roomItems.push(<RoomItem name={val.name}
+                                                      channelsList={val.channels}
+                                                      key={val.name}/>));
     return (
-        <div className='NavBar-wr'>
-            <div className='NavBar-header'>
-                <h1>pencil's server</h1>
-                <button>
+        <div className='navbar-wr'>
+            <div className='navbar__header'>
+                <h1 className='navbar__header__title'>pencil's server</h1>
+                <button className='navbar__header__btn'>
                     <FontAwesomeIcon icon='caret-down' />
                 </button>
             </div>
-            <RoomItem name={ROOMS[0].roomName} channelsList={ROOMS[0].channels} />
-            <div className='NavBar-footer'>
+            {roomItems}
+            {/* <div className='navbar-footer'>
                 <button>setting</button>
-            </div>
+            </div> */}
         </div>
     );
 }
