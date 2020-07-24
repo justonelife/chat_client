@@ -9,7 +9,13 @@ input:focus, button:focus, textarea:focus {
 }
 button {
     cursor: pointer;
+    background: transparent;
 }
 li {
     list-style: none;
+}
+::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+	background: transparent;
 }

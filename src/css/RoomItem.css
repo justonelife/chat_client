@@ -2,7 +2,7 @@
 
 .room-item {
     display: flex;
-    width: 300px;/*watch here*/
+    /* width: 300px;watch here */
     cursor: pointer;
     padding: 0 20px;
 }

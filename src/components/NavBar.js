@@ -21,7 +21,10 @@ const ROOMS = [
     {
         name: 'onmyoji',
         channels: [
-            'sum-rage-monster'
+            {
+                name: 'sum-rage-monster',
+                type: 2
+            }
         ]
     }
 ];

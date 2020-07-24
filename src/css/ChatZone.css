@@ -1,0 +1,105 @@
+@import url('./general.css');
+
+.chat-zone {
+    background: var(--dark-theme-chatpage-color-two);
+    flex-grow: 8;
+}
+.chat-zone__head {
+    border-bottom: 1px solid rgba(0, 0, 0, .5);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.chat-zone__head__channel-name {
+    color: var(--dark-theme-chatpage-text-color);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    flex-grow: 1;
+}
+.showUsers-btn {
+    color: var(--dark-theme-chatpage-text-color);
+    font-size: 20px;
+}
+.chat-zone__content {
+    height: calc(100% - 50px);
+}
+.chat-zone__content__main, .chat-zone__content__side {
+    height: 100%;
+    transition: all .2s ease;
+}
+.chat-zone__content__main {
+    width: calc(100% - 300px);
+    display: flex;
+    flex-direction: column;
+}
+.chat-zone__content__main--active {
+    width: 100%;
+}
+.chat-zone__content__side {
+    background: var(--dark-theme-chatpage-color-main);
+    width: 300px;
+    height: calc(100% - 50px);
+    position: fixed;
+    top: 50px;
+    right: -300px;
+}
+.chat-zone__content__side--active {
+    right: 0;
+}
+
+.messages-board {
+    flex-grow: 1;
+}
+.message-bar {
+    min-height: 60px;
+    height: auto;
+    padding: 10px 20px;
+}
+.message-bar__finput {
+    background: #40444b;
+    border-radius: 5px;
+    padding: 10px 15px;
+    position: relative;
+}
+.message-bar__input {
+    height: auto;
+    min-height: 20px;
+    max-height: 200px;
+    line-height: 20px;
+    outline: none;
+    overflow-y: scroll;
+    word-wrap: break-word;
+    word-break: break-all;
+    width: 88%;
+}
+.message-bar__input, .message-bar__placeholder {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 17px;
+    color: #f3f3f3;
+}
+.message-bar__placeholder {
+    text-transform: capitalize;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    pointer-events: none;
+}
+.paper-clip-btn, .message-image-btn, .message-emoji-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);    
+    font-size: 18px;
+    color: var(--dark-theme-chatpage-text-color);
+    width: 25px;
+    height: 20px;
+}
+.paper-clip-btn {
+    right: 80px;
+}
+.message-image-btn {
+    right: 50px;
+}
+.message-emoji-btn {
+    right: 20px;
+}
