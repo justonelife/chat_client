@@ -19,3 +19,6 @@ li {
 	height: 0px;
 	background: transparent;
 }
+::selection {
+    background: #9c88ff;
+}

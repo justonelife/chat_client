@@ -18,6 +18,14 @@
 .center-line {
     margin: 0 auto;
 }
+.clearfix {
+    overflow: auto;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 ::-webkit-input-placeholder {
     text-transform: capitalize;
     color: var(--main-theme-color);

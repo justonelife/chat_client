@@ -1,0 +1,27 @@
+@import url('./general.css');
+
+
+.message-block {
+    background: orange;
+    min-height: 60px;
+    padding: 5px 10px;
+    position: relative;
+}
+.message-block__avatar {
+    position: absolute;
+}
+.message-block__message {
+    margin-left: 55px;
+    background: #40444B;
+    padding: 10px 15px;
+    color: #f3f3f3;
+    border-radius: 5px;
+    line-height: 20px;
+    letter-spacing: .8px;
+    max-width: calc(50% - 55px);
+    width: fit-content;
+    word-wrap: break-word;
+}
+.message-block__message--own {
+    float: right;
+}

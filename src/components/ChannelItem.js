@@ -17,11 +17,13 @@ const ChannelItem = (props) => {
                 <button className='channel__invite'>
                     <FontAwesomeIcon icon='user-plus' />
                 </button>
-                {props.type === 1 ? 
-                    <button className='channel__setting'
-                            onClick={() => setIsOpen(true)}>
-                        <FontAwesomeIcon icon='cog' />
-                    </button> : null
+                {   
+                    props.type === 1  
+                    ?   <button className='channel__setting'
+                                onClick={() => setIsOpen(true)}>
+                            <FontAwesomeIcon icon='cog' />
+                        </button> 
+                    : null
                 }
             </div>
             <SettingPage isOpen={isOpen} onClose={onBtnX} channelName={props.name} />
