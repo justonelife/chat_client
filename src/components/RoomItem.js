@@ -11,7 +11,8 @@ const RoomItem = (props) => {
 
     channelsList.forEach(val => channelItems.push(<ChannelItem name={val.name}
                                                                type={val.type}
-                                                               key={val.name} />));//fix key 
+                                                               id={val._id}
+                                                               key={val._id} />));//fix key 
     return (
         <div className='mb-35'>
             <div className='room-item'>

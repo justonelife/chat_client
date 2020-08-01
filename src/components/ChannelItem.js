@@ -10,6 +10,8 @@ const ChannelItem = (props) => {
         setIsOpen(false);
     }
 
+    console.log(props.id);//got the id
+
     return (
         <React.Fragment>
             <div className='channel center-line'>

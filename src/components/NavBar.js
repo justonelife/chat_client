@@ -10,22 +10,19 @@ const ROOMS = [
         channels: [
             {
                 name: 'javascript',
+                _id: "5f0a77f09408a7dc2a2441a1",
                 type: 1
             },
             {
                 name: 'general',
+                _id: "5f0a76c99408a7dc2a2441a0",
                 type: 1
             }
         ]
     },
     {
-        name: 'onmyoji',
-        channels: [
-            {
-                name: 'sum-rage-monster',
-                type: 2
-            }
-        ]
+        name: 'general',
+        channels: []
     }
 ];
 

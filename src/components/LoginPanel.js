@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { isLogged, saveUserInfo, saveRooms } from '../actions';
+import { isLogged, saveUserInfo, saveRooms, saveChannels } from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/LoginPanel.css';
 
@@ -37,6 +37,7 @@ const LoginPanel = () => {
                     avatar_url: data.avatar_url
                 }));
                 disPatch(saveRooms(data.rooms));
+                disPatch(saveChannels(data.channels));
                 history.push('/chat');
             }
         });

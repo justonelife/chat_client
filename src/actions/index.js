@@ -15,3 +15,9 @@ export const saveRooms = (rooms) => {
         payload: rooms
     }
 }
+export const saveChannels = (channels) => {
+    return {
+        type: 'SAVE_CHANNELS',
+        payload: channels
+    }
+}
