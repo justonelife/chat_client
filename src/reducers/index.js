@@ -1,14 +1,14 @@
-import logStateReducer from './logStateReducer';
-import saveUserInfoReducer from './saveUserInfoReducer';
-import saveRoomsReducer from './saveRoomsReducer';
-import saveChannelsReducer from './saveChannelsReducer';
+import NickName from './NickName';
+import AvatarURL from './AvatarURL';
+import RoomsData from './RoomsData';
+import SelectChannel from './SelectChannel';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-    logStateReducer,
-    saveUserInfoReducer,
-    saveRoomsReducer,
-    saveChannelsReducer
+    NickName,
+    AvatarURL,
+    RoomsData,
+    SelectChannel
 });
 
 export default rootReducer;

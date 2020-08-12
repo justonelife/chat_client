@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { isLogged, saveUserInfo, saveRooms, saveChannels } from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/LoginPanel.css';
 
@@ -12,6 +11,22 @@ const LoginPanel = () => {
     const disPatch = useDispatch();
 
     const history = useHistory();
+
+    useEffect(() => {
+        let logged = parseInt(localStorage.getItem('logged'));
+        if (logged === 1) {
+            history.push('/chat');
+        }
+    });
+
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'logged') {
+            let logged = parseInt(localStorage.getItem(e.key));
+            if (logged === 1) {
+                history.push('/chat');
+            }
+        }
+    });
 
     function onLoginBtnClick(e) {
         e.preventDefault();
@@ -31,13 +46,8 @@ const LoginPanel = () => {
         .then(res => res.json())
         .then(data => {
             if (data.allowLogin) {
-                disPatch(isLogged());
-                disPatch(saveUserInfo({
-                    nickname: data.nickname,
-                    avatar_url: data.avatar_url
-                }));
-                disPatch(saveRooms(data.rooms));
-                disPatch(saveChannels(data.channels));
+                localStorage.setItem('logged', 1);
+                localStorage.setItem('_id', data.user_id);
                 history.push('/chat');
             }
         });

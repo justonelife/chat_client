@@ -1,23 +1,24 @@
-export const isLogged = () => {
+export const saveName = (name) => {
     return {
-        type: 'HAS_LOGIN'
+        type: 'SAVE_NAME',
+        payload: name
     }
 }
-export const saveUserInfo = (data) => {
+export const saveAvatar = (url) => {
     return {
-        type: 'SAVE_USER_INFO',
+        type: 'SAVE_AVATAR',
+        payload: url
+    }
+}
+export const saveRoomsData = (data) => {
+    return {
+        type: 'SAVE_ROOMS_DATA',
         payload: data
     }
 }
-export const saveRooms = (rooms) => {
+export const selectChannel = (channel_id) => {
     return {
-        type: 'SAVE_ROOMS',
-        payload: rooms
-    }
-}
-export const saveChannels = (channels) => {
-    return {
-        type: 'SAVE_CHANNELS',
-        payload: channels
+        type: 'SELECT_CHANNEL',
+        payload: channel_id
     }
 }

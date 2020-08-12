@@ -1,39 +1,89 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import '../css/ChatZone.css';
 import MessageBlock from './MessageBlock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import io from 'socket.io-client';
 
-// const url = 'http://localhost:5000';
 var messages = [];
-// const socket = io(url);
-
-
 
 const ChatZone = (props) => {
+    const url = 'http://localhost:5000/channels';
     const [showMembers, setShowMembers] = useState(true);
     const [message, setMessage] = useState('');
     const [actSend, setActSend] = useState(false);
+    const [channelData, setChannelData] = useState({});
+    const [dataOk, setdataOk] = useState(false);
 
-    var MESSAGES = props.messages;
-    var USER_ID = props.user_id;
+    var USER_ID = localStorage.getItem('_id');
+    // const [channelId, setChannelId] = useState(sessionStorage.getItem('selected_channel'));
+    useEffect(() => {
+        var temp = sessionStorage.getItem('selected_channel');
+        // setChannelId(temp);
+        // console.log('channelId ' + channelId + ' temp ' + temp);
+        // setChannelId(useSelector(state => state.SelectChannel));
+        // console.log('watch ' + channelId);
 
-    if (messages.length === 0) {
-        for (var i = 0; i < MESSAGES.length; i++) {
-            if (USER_ID === MESSAGES[i].user_id) {  //your message
-                messages.push(<MessageBlock type={2}
-                                            text={MESSAGES[i].text} 
-                                            key={MESSAGES[i]._id} />);
-            } else if (i >=1 && MESSAGES[i].user_id === MESSAGES[i - 1].user_id) {  //not your message but own by the same friend 
-                                                                                    //whose message rendered right before
-                messages.push(<MessageBlock type={3}
-                                            text={MESSAGES[i].text} 
-                                            key={MESSAGES[i]._id} />);
-            } else {    //friend's message
+        const data = {
+            id: temp
+        };
+        fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setChannelData(data);
+            setdataOk(true);
+        });
+
+
+    }, [useSelector(state => state.SelectChannel)])
+
+    
+    // useEffect(() => {
+    //     const data = {
+    //         id: channelId
+    //     };
+    //     fetch(url, {
+    //         method: 'POST',
+    //         mode: 'cors',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => console.log(data));
+        // console.log(channelData);
         
-                messages.push(<MessageBlock type={1}
-                                            text={MESSAGES[i].text} 
-                                            key={MESSAGES[i]._id} />)
+    // }, [])
+
+    if (dataOk) {
+
+        var MESSAGES = channelData.messages;
+        console.log(MESSAGES);
+        if (messages.length === 0) {
+            for (var i = 0; i < MESSAGES.length; i++) {
+                if (USER_ID === MESSAGES[i].user_id) {  //your message
+                    messages.push(<MessageBlock type={2}
+                                                text={MESSAGES[i].text} 
+                                                key={MESSAGES[i]._id} />);
+                } else if (i >=1 && MESSAGES[i].user_id === MESSAGES[i - 1].user_id) {  //not your message but own by the same friend 
+                                                                                        //whose message rendered right before
+                    messages.push(<MessageBlock type={3}
+                                                text={MESSAGES[i].text} 
+                                                key={MESSAGES[i]._id} />);
+                } else {    //friend's message
+            
+                    messages.push(<MessageBlock type={1}
+                                                text={MESSAGES[i].text} 
+                                                key={MESSAGES[i]._id} />)
+                }
             }
         }
     }
@@ -41,7 +91,6 @@ const ChatZone = (props) => {
     const [messageItems, setMessageItems] = useState(messages);
 
     useEffect(() => {
-        
         var mb = document.getElementsByClassName('messages-board__stick-bottom')[0];
         mb.scrollTop = mb.scrollHeight - mb.clientHeight; //messages board auto scroll bottom
         setActSend(false);  //set to false to prepare for catch state change for update scroll down AGAIN
@@ -80,7 +129,7 @@ const ChatZone = (props) => {
     return (
         <div className='chat-zone'>
             <div className='chat-zone__head'>
-                <h2 className='chat-zone__head__channel-name'>general</h2>
+                <h2 className='chat-zone__head__channel-name'>{channelData.name}</h2>
                 <button className='showUsers-btn' onClick={() => setShowMembers(!showMembers)}>
                     <FontAwesomeIcon icon='users' />
                 </button>
