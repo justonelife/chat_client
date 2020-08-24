@@ -22,3 +22,8 @@ export const selectChannel = (channel_id) => {
         payload: channel_id
     }
 }
+export const toggleMembersBar = () => {
+    return {
+        type: 'TOGGLE_MEMBERS_BAR'
+    }
+}

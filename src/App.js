@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import ChatPage from './components/ChatPage';
 import SignUpPage from './components/SignUpPage';
+import FetchData from './components/FetchData';
 import './css/App.css';
 import { socket } from './components/Socket';
 
@@ -19,6 +20,7 @@ const App = () => {
                 <LoginPage />
             </Route>
             <Route path='/chat'>
+                <FetchData />
                 <ChatPage />
             </Route>
             <Route path='/signup'>

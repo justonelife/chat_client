@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import NavBar from './NavBar';
 import Dashboard from './Dashboard';
 import ChatZone from './ChatZone';
-import { saveName, saveAvatar, saveRoomsData } from '../actions';
 import '../css/ChatPage.css';
 
 
@@ -61,29 +60,8 @@ import '../css/ChatPage.css';
 // ];
 
 const ChatPage = () => {
-    const [nickname, setNickname] = useState('');
-    const url = 'http://localhost:5000/data';
-    const dispatch = useDispatch();
-    useEffect(() => {
-        const data = {
-            user_id: localStorage.getItem('_id')
-        }
-        fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
-            setNickname(data.nickname);
-            dispatch(saveName(data.nickname));
-            dispatch(saveAvatar(data.avatar_url));
-            dispatch(saveRoomsData(data.rooms));
-        });
-    }, [])
+    
+    
 
     //general
     // var userChoice = "5f0a76c99408a7dc2a2441a0";
@@ -116,6 +94,9 @@ const ChatPage = () => {
     }
 
     const logState = parseInt(localStorage.getItem('logged'));
+
+
+    // console.log('chat page');
     
 
     if (logState === 1) {

@@ -8,19 +8,19 @@ import { selectChannel } from '../actions';
 const ChannelItem = (props) => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
+    // const selectedChannel = useSelector(state => state.SelectChannel);
+    const selectedChannel = sessionStorage.getItem('selected_channel');
 
     function onBtnX() {
         setIsOpen(false);
     }
 
-    // console.log('watch 2 ' + props.name + '&' + props.id);
     return (
         <React.Fragment>
-            <div className='channel center-line' 
+            <div className={'channel center-line' + (selectedChannel === props.id ? ' channel--active': '')} 
                  onClick={() => {
                     dispatch(selectChannel(props.id));
                     sessionStorage.setItem('selected_channel', props.id);
-                    console.log('sessionStorage ' + sessionStorage.getItem('selected_channel') + ' props.id ' + props.id);
                  }}>
 
 

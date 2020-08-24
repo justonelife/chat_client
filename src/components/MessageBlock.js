@@ -10,7 +10,7 @@ const MessageBlock = (props) => {
             {
                 type === 1 || !type === 3
                     ? <div className='message-block__avatar'>
-                        <Avatar src='https://picsum.photos/id/206/500/500' />
+                        <Avatar src={props.url} />
                     </div>
                     : null
             }

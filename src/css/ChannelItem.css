@@ -10,11 +10,19 @@
     border-radius: 5px;
     margin-bottom: 4px;
 }
+.channel--active {
+    background: var(--dark-theme-chatpage-color-two);
+}
+
 .channel:hover {
     cursor: pointer;
     background: var(--dark-theme-chatpage-color-two);
 }
-.channel:hover .channel__invite, .channel:hover .channel__setting {
+
+.channel:hover .channel__invite, 
+.channel:hover .channel__setting,
+.channel--active .channel__invite, 
+.channel--active .channel__setting {
     opacity: 1;
 }
 .active {
