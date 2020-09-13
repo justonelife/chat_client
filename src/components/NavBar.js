@@ -1,59 +1,31 @@
-import React, { useEffect, useState} from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import RoomItem from './RoomItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/NavBar.css';
-import LogOutBtn from './LogOutBtn';
+import Avatar from './Avatar';
+import { useHistory } from 'react-router-dom';
 
-const ROOMS = [
-    {
-        name: 'web dev',
-        channels: [
-            {
-                name: 'javascript',
-                _id: "5f0a77f09408a7dc2a2441a1",
-                type: 1
-            },
-            {
-                name: 'general',
-                _id: "5f0a76c99408a7dc2a2441a0",
-                type: 1
-            }
-        ]
-    },
-    {
-        name: 'general',
-        channels: []
-    }
-];
 
 const NavBar = () => {
+    const user_id = localStorage.getItem('_id');
+    const history = useHistory();
     const user_nickname = useSelector(state => state.NickName);
     const roomsData = useSelector(state => state.RoomsData);
-    // console.log('watch 1 ' + roomsData.length);
     var roomItems = [];
     roomsData.forEach(val => roomItems.push(<RoomItem name={val.name}
                                                       channelsList={val.channels}
-                                                      key={val.id}/>));
-
-    const [test, setTest] = useState({});
-    // useEffect(() => {
-    //     var data = {
-    //         id: "5f0a76c99408a7dc2a2441a0"
-    //     }
-    //     fetch('http://localhost:5000/channels', {
-    //         method: 'POST',
-    //         mode: 'cors',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(data)
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => setTest(data));
+                                                      key={val.id} />));
 
 
-    // }, [])
+    //for sync between tabs in same browser
+    window.addEventListener('storage', function (e) {
+        if (e.key === 'logged') {
+            history.push('/');
+        }
+    });
+
+
     return (
         <div className='navbar-wr'>
             <div className='navbar__header'>
@@ -63,11 +35,27 @@ const NavBar = () => {
                 </button>
             </div>
             {roomItems}
-            {/* <div className='navbar-footer'>
-                <button>setting</button>
-            </div> */}
-            <LogOutBtn />
-            <p>{test.name}</p>
+            <div className='navbar__footer'>
+                <div className='navbar__footer__avatar'>
+                    <Avatar src={`http://localhost:5000/avatar/${user_id}`}
+                            size={40} />
+                </div>
+                <button className='dashboard-btn'>
+                    <FontAwesomeIcon icon='address-card' />
+                </button>
+                {/* <LogOutBtn /> */}
+
+                <button className='logout-btn' onClick={() => {
+                    localStorage.removeItem('logged');
+                    localStorage.removeItem('_id');
+                    // sessionStorage.setItem('selected_channel', 'dashboard');
+                    history.push('/');
+                }}>
+                    <FontAwesomeIcon icon='sign-out-alt' />
+                </button>
+
+
+            </div>
         </div>
     );
 }

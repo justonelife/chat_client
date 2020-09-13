@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { saveName, saveAvatar, saveRoomsData } from '../actions';
+import { saveName, saveRoomsData } from '../actions';
 
 const FetchData = () => {
 
-    const [nickname, setNickname] = useState('');
     const url = 'http://localhost:5000/data';
     const dispatch = useDispatch();
 
@@ -22,9 +21,7 @@ const FetchData = () => {
         })
         .then(res => res.json())
         .then(data => {
-            setNickname(data.nickname);
             dispatch(saveName(data.nickname));
-            dispatch(saveAvatar(data.avatar_url));
             dispatch(saveRoomsData(data.rooms));
         });
     }, [])

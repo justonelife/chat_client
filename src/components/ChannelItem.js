@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import '../css/ChannelItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SettingPage from './SettingPage';

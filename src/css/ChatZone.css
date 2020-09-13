@@ -66,6 +66,7 @@
     min-height: 60px;
     height: auto;
     padding: 10px 20px;
+    /* margin-bottom: 15px;    for fix TypingBoard fixed bottom 0 & height 25px */
 }
 .message-bar__finput {
     background: #40444b;
@@ -82,7 +83,9 @@
     outline: none;
     overflow-y: scroll;
     word-wrap: break-word;
+    /* overflow-wrap: break-word; */
     flex-grow: 2;
+    /* background: orange; */
 }
 .message-bar__input, .message-bar__placeholder {
     font-size: 17px;

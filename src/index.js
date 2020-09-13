@@ -12,7 +12,10 @@ import { faCaretDown,
          faUsers, 
          faPaperclip,
          faImage,
-         faLaughSquint } from '@fortawesome/free-solid-svg-icons';
+         faLaughSquint,
+         faSignOutAlt,
+         faAddressCard,
+         faCamera} from '@fortawesome/free-solid-svg-icons';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
@@ -27,7 +30,10 @@ library.add(fab,
             faUsers, 
             faPaperclip,
             faImage,
-            faLaughSquint);
+            faLaughSquint,
+            faSignOutAlt,
+            faAddressCard,
+            faCamera);
 
 var store = createStore(rootReducer);
 

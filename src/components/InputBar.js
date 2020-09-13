@@ -7,28 +7,17 @@ import { socket } from './Socket';
 const InputBar = () => {
 
     const [message, setMessage] = useState('');
-    const avatarURL = useSelector(state => state.AvatarURL);
+    const nickname = useSelector(state => state.NickName);
+
+    const channelId = sessionStorage.getItem('selected_channel');
 
     function handleSendMessage() {
 
-        // let d = new Date();
-        // let dtime = d.getTime();    //generate key for MessageBlock
-
-        // let formatedMessageText = formatText(message);
-
-        // messages.push(<MessageBlock type={2}
-        //                             text={formatedMessageText}
-        //                             key={dtime} />);
-        // setMessageItems(messages);
-        // setActSend(true);   //catch state change to update scorll down
-        // setMessage('');
-        let formatedMessageText = formatText(message);
-        const sender = localStorage.getItem('_id');
-        const channelId = sessionStorage.getItem('selected_channel');
-        const time = new Date();
-        socket.emit('message', sender, formatedMessageText, channelId, time, avatarURL);
-        // setMessage('');
-        // console.log('sent');
+        const user_id = localStorage.getItem('_id');
+        let text = message;
+        const send_date = new Date().toString();
+        socket.emit('message', user_id, text, channelId, send_date);
+        setMessage('');
 
     }
 
@@ -36,8 +25,13 @@ const InputBar = () => {
         if (e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
             e.target.innerHTML = '';
-            handleSendMessage();
+            if (message !== '') handleSendMessage();
         }
+    }
+
+    function handleUserInput(e) {
+        setMessage(formatText(e.target.innerHTML));
+        if (message !== '') socket.emit('typing', nickname, channelId);
     }
 
     return (
@@ -54,7 +48,7 @@ const InputBar = () => {
                         contentEditable='true'
                         spellCheck='false'
                         autoComplete='false'
-                        onInput={(e) => setMessage(e.target.innerHTML)}
+                        onInput={(e) => handleUserInput(e)}
                         onKeyDown={(e) => handleSpecialCase(e)}>
                         
                 </div>
@@ -80,8 +74,9 @@ export default InputBar;
 
 
 function formatText(message) {
-    var result = message.replace(/&nbsp;/g, ' ')
-                        .replace(/<br>/g, '\n')
-                        .trimEnd();
-    return result;
+    return message.replace(/(&nbsp;|<div>|<\/div>)/g, ' ')
+                  .replace(/<br>/g, '\n')
+                  .replace(/&gt;/g, '>')
+                  .replace(/&lt;/g, '<')
+                  .trimEnd();
 }

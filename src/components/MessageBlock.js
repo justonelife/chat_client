@@ -3,6 +3,7 @@ import Avatar from './Avatar';
 import '../css/MessageBlock.css';
 
 const MessageBlock = (props) => {
+    const AVATAR_ENDPOINT = 'http://localhost:5000/avatar/';
     // type: 1: other user's messages, 2: your message, 3: the message right before is the same author
     const type = props.type;
     return (
@@ -10,7 +11,8 @@ const MessageBlock = (props) => {
             {
                 type === 1 || !type === 3
                     ? <div className='message-block__avatar'>
-                        <Avatar src={props.url} />
+                        <Avatar src={AVATAR_ENDPOINT + props.avatarFilename}
+                                size={40} />
                     </div>
                     : null
             }

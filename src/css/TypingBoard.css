@@ -1,0 +1,82 @@
+@import url('./general.css');
+
+:root {
+    --loop-prolong: 1s;
+    --delay-time: .3s;
+    --delay-time2: .6s;
+}
+
+.typing-board {
+    padding: 0 30px;
+    height: 25px;
+    width: 50%;
+    /* height: 250px;
+    position: fixed;
+    bottom: 0; */
+}
+.jumping-dots {
+    position: relative;
+    margin-top: 7.5px;
+    float: left;
+    height: 10px;
+    width: 20px;
+}
+.jumping-dots__dot {
+    display: inline-block;
+    height: 5px;
+    width: 5px;
+    background: var(--dark-theme-chatpage-text-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 2.5px;
+}
+.jumping-dots__dot:first-child {
+    left: 0;
+    animation: jumping-dots linear var(--loop-prolong) infinite;
+}
+.jumping-dots__dot:nth-child(2) {
+    left: 7.5px;
+    animation: jumping-dots linear var(--loop-prolong) var(--delay-time) infinite;
+}
+.jumping-dots__dot:last-child {
+    left: 15px;
+    animation: jumping-dots linear var(--loop-prolong) var(--delay-time2) infinite;
+}
+@keyframes jumping-dots {
+    0% {
+        top: 1.25px;
+    }
+    25% {
+        top: 2.5px;
+    }
+    50% {
+        top: 3.75px;
+    }
+    75% {
+        top: 2.5px;
+    }
+    100% {
+        top: 1.25px;
+    }
+}
+
+.typing-board__text {
+    margin-left: 10px;
+    color: var(--dark-theme-chatpage-text-color);
+    
+    overflow-x: hidden;
+    display: flex;
+}
+.typing-board__text__names {
+    overflow: scroll;
+    margin-left: 5px;
+    height: 20px;
+    /* flex-grow: 2; */
+    /* background: green; */
+}
+.typing-board__text__typing {
+    margin-left: 5px;
+    flex-grow: 1;
+    min-width: 75px;
+    /* background: yellow; */
+}

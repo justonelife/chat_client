@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import '../css/ChatZone.css';
 import ChatZoneHeader from './ChatZoneHeader';
 import MessagesBoard from './MessagesBoard';
 import InputBar from './InputBar';
 import MembersBar from './MembersBar';
+import TypingBoard from './TypingBoard';
 import { socket } from './Socket';
+
+import { increaseAvatarUpdateCount } from '../actions';
 
 const ChatZone = (props) => {
     const url = 'http://localhost:5000/channels';
     const showMembers = useSelector(state => state.MembersBarState);
-    // const [message, setMessage] = useState('');
-    // const [actSend, setActSend] = useState(false);
     const [channelData, setChannelData] = useState({});
+    const [messages, setMessages] = useState([]);
+
+    const dispatch = useDispatch();
 
     const name = useSelector(state => state.NickName);
 
@@ -32,7 +36,10 @@ const ChatZone = (props) => {
             body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(data => setChannelData(data));
+        .then(data => {
+            setChannelData(data);
+            setMessages([]);
+        })
 
         const id = localStorage.getItem('_id');
         const room = sessionStorage.getItem('selected_channel');
@@ -40,16 +47,30 @@ const ChatZone = (props) => {
         socket.emit('subscribe', { id, name, room });
 
 
+
+
     }, [useSelector(state => state.SelectChannel)])
-    // console.log('chat zone');
+
+    useEffect(() => {
+
+        socket.on('message', (_id, user_id, text, send_date) => {
+            setMessages(messages => [...messages, { _id, user_id, text, send_date }]);
+        });
+
+        socket.on('member changed avatar', (their_id) => {
+            console.log('on command');
+            fetch('http://localhost:5000/avatar/' + their_id)
+                .then(res => dispatch(increaseAvatarUpdateCount()));
+        });
+
+        socket.on('typing', (nickname) => {
+            console.log(nickname);
+        });
+
+    }, [])
 
 
 
-    // useEffect(() => {
-    //     var mb = document.getElementsByClassName('messages-board__stick-bottom')[0];
-    //     mb.scrollTop = mb.scrollHeight - mb.clientHeight; //messages board auto scroll bottom
-    //     setActSend(false);  //set to false to prepare for catch state change for update scroll down AGAIN
-    // }, [actSend]);
 
     return (
         <div className='chat-zone'>
@@ -58,8 +79,9 @@ const ChatZone = (props) => {
             <div className='chat-zone__content'>
                 <div className={'chat-zone__content__main' + (!showMembers ? ' chat-zone__content__main--active' : '')}>
                     
-                    <MessagesBoard />
+                    <MessagesBoard messages={messages} />
                     <InputBar />
+                    <TypingBoard />
 
 
                 </div>

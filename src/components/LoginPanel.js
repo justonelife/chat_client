@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/LoginPanel.css';
 
@@ -8,7 +7,6 @@ const LoginPanel = () => {
 
     var username = '';
     var password = '';
-    const disPatch = useDispatch();
 
     const history = useHistory();
 

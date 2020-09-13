@@ -27,3 +27,8 @@ export const toggleMembersBar = () => {
         type: 'TOGGLE_MEMBERS_BAR'
     }
 }
+export const increaseAvatarUpdateCount = () => {
+    return {
+        type: 'INCREASE_AVATAR_UPDATE_COUNT'
+    }
+}
