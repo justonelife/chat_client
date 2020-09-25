@@ -8,14 +8,15 @@ import { useHistory } from 'react-router-dom';
 
 
 const NavBar = () => {
+    // console.log('nav bar');
     const user_id = localStorage.getItem('_id');
     const history = useHistory();
     const user_nickname = useSelector(state => state.NickName);
     const roomsData = useSelector(state => state.RoomsData);
     var roomItems = [];
     roomsData.forEach(val => roomItems.push(<RoomItem name={val.name}
-                                                      channelsList={val.channels}
-                                                      key={val.id} />));
+        channelsList={val.channels}
+        key={val.id} />));
 
 
     //for sync between tabs in same browser
@@ -38,7 +39,7 @@ const NavBar = () => {
             <div className='navbar__footer'>
                 <div className='navbar__footer__avatar'>
                     <Avatar src={`http://localhost:5000/avatar/${user_id}`}
-                            size={40} />
+                        size={40} />
                 </div>
                 <button className='dashboard-btn'>
                     <FontAwesomeIcon icon='address-card' />

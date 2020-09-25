@@ -4,7 +4,7 @@
     font-family: 'Quicksand', sans-serif;
     background: var(--dark-theme-chatpage-color-two);
     flex-grow: 8;
-
+    min-width: 300px;
 }
 .chat-zone__head {
     border-bottom: 1px solid rgba(0, 0, 0, .5);
@@ -81,11 +81,10 @@
     max-height: 200px;
     line-height: 20px;
     outline: none;
-    overflow-y: scroll;
+    overflow: scroll;
     word-wrap: break-word;
-    /* overflow-wrap: break-word; */
+    word-break: break-word;
     flex-grow: 2;
-    /* background: orange; */
 }
 .message-bar__input, .message-bar__placeholder {
     font-size: 17px;

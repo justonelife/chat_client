@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import '../css/ChannelItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SettingPage from './SettingPage';
@@ -8,8 +8,8 @@ import { selectChannel } from '../actions';
 const ChannelItem = (props) => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
-    // const selectedChannel = useSelector(state => state.SelectChannel);
-    const selectedChannel = sessionStorage.getItem('selected_channel');
+    const selectedChannel = useSelector(state => state.SelectChannel);
+    // const selectedChannel = sessionStorage.getItem('selected_channel');
 
     function onBtnX() {
         setIsOpen(false);

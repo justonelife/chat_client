@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import '../css/ChatZone.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,15 +8,25 @@ const InputBar = () => {
 
     const [message, setMessage] = useState('');
     const nickname = useSelector(state => state.NickName);
+    const [isTyping, setIsTyping] = useState(false);
+    const user_id = localStorage.getItem('_id');
 
     const channelId = sessionStorage.getItem('selected_channel');
 
-    function handleSendMessage() {
+    useEffect(() => {
+        socket.on('green light typing', () => {
+            console.log('green light');
+        });
 
-        const user_id = localStorage.getItem('_id');
+
+    }, []);
+
+    function handleSendMessage() {
         let text = message;
         const send_date = new Date().toString();
         socket.emit('message', user_id, text, channelId, send_date);
+        socket.emit('end typing', nickname, user_id, channelId);
+        setIsTyping(false);
         setMessage('');
 
     }
@@ -31,26 +41,48 @@ const InputBar = () => {
 
     function handleUserInput(e) {
         setMessage(formatText(e.target.innerHTML));
-        if (message !== '') socket.emit('typing', nickname, channelId);
+        var inputText = formatText(e.target.innerHTML);
+        if (inputText !== '') {
+            if (!isTyping) {
+                // console.log('typing');
+                socket.emit('typing', nickname, user_id, channelId);
+                setIsTyping(true);
+            }
+        } else {
+            if (isTyping) {
+                // console.log('end typing');
+                socket.emit('end typing', nickname, user_id, channelId);
+                setIsTyping(false);
+            }
+        }
     }
+    
+    function handlePasteRichText(e) {
+        let paste = (e.clipboardData || window.clipboardData).getData('text/plain');
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return false;
+        selection.deleteFromDocument();
+        selection.getRangeAt(0).insertNode(document.createTextNode(paste));
+        setMessage(message => message + paste);
+        e.preventDefault();
+    }
+
 
     return (
         <div className='message-bar'>
 
             <div className='message-bar__finput'>
 
-                {message === '' 
-                    ? <div className='message-bar__placeholder'>message...</div>
-                    : null
-                }
+                {message === '' && <div className='message-bar__placeholder'>message...</div>}
                 
                 <div className='message-bar__input' 
                         contentEditable='true'
+                        role='textbox'
                         spellCheck='false'
                         autoComplete='false'
                         onInput={(e) => handleUserInput(e)}
-                        onKeyDown={(e) => handleSpecialCase(e)}>
-                        
+                        onKeyDown={(e) => handleSpecialCase(e)}
+                        onPaste={(e) => handlePasteRichText(e)}>
                 </div>
 
 

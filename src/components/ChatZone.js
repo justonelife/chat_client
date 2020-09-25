@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+// import { createSelector } from 'reselect';
 import '../css/ChatZone.css';
 import ChatZoneHeader from './ChatZoneHeader';
 import MessagesBoard from './MessagesBoard';
@@ -10,67 +11,52 @@ import { socket } from './Socket';
 
 import { increaseAvatarUpdateCount } from '../actions';
 
+
+
 const ChatZone = (props) => {
-    const url = 'http://localhost:5000/channels';
+    
     const showMembers = useSelector(state => state.MembersBarState);
-    const [channelData, setChannelData] = useState({});
-    const [messages, setMessages] = useState([]);
-
+    const [messages, setMessages] = useState(props.messages);
+    const [typingMems, setTypingMems] = useState([]);
+    const channelData = props.channelData;
     const dispatch = useDispatch();
-
-    const name = useSelector(state => state.NickName);
-
-
+    
+    
     useEffect(() => {
-        var temp = sessionStorage.getItem('selected_channel');
-
-        const data = {
-            id: temp
-        };
-        fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
-            setChannelData(data);
-            setMessages([]);
-        })
-
-        const id = localStorage.getItem('_id');
-        const room = sessionStorage.getItem('selected_channel');
-
-        socket.emit('subscribe', { id, name, room });
-
-
-
-
-    }, [useSelector(state => state.SelectChannel)])
-
-    useEffect(() => {
-
+        let mounted = true;
+        
         socket.on('message', (_id, user_id, text, send_date) => {
-            setMessages(messages => [...messages, { _id, user_id, text, send_date }]);
+            if (mounted) setMessages(messages => [...messages, { _id, user_id, text, send_date }]);
         });
-
+        
         socket.on('member changed avatar', (their_id) => {
-            console.log('on command');
-            fetch('http://localhost:5000/avatar/' + their_id)
-                .then(res => dispatch(increaseAvatarUpdateCount()));
+            if (mounted) {
+                fetch('http://localhost:5000/avatar/' + their_id)
+                    .then(res => dispatch(increaseAvatarUpdateCount()));
+            }
         });
-
+        
         socket.on('typing', (nickname) => {
-            console.log(nickname);
+            if (mounted) setTypingMems(names => [...names, nickname]);
         });
 
-    }, [])
+        socket.on('end typing', (nickname) => {
+            if (mounted) {
+                var temp = [...typingMems];
+                var index = temp.indexOf(nickname);
+                if (index !== -1) {
+                    temp.splice(index, 1);
+                    setTypingMems(temp);
+                }
+            }
+        });
 
-
-
+        return () => mounted = false;
+        
+    }, [dispatch, typingMems])
+    
+    
+    console.log(typingMems);
 
     return (
         <div className='chat-zone'>
@@ -81,7 +67,7 @@ const ChatZone = (props) => {
                     
                     <MessagesBoard messages={messages} />
                     <InputBar />
-                    <TypingBoard />
+                    <TypingBoard list={typingMems} />
 
 
                 </div>

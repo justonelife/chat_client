@@ -29,39 +29,10 @@ const MessagesBoard = (props) => {
         }
     }
 
-    
-    // useEffect(() => {
-    //     socket.on('message', function(id, message, time, url) {
-    //         // console.log('count');
-    //         // setMessages([...messages, { id, message, time, url }]);
-    //         setMessages(messages => [...messages, { id, message, time, url }]);
-
-    //         // var temp = messages.slice(0, messages.length);
-    //         // temp.push({ id, message, time, url });
-    //         // console.log(temp);
-    //         // setMessages(messages => temp);
-    //         // setCount(count => count + 1);
-    //         // console.log(count);
-
-    //         // let newState = [...messages, { id, message, time, url }];
-    //         // setMessages(newState);
-    //         // setMessages(messages => messages.concat({ id, message, time, url }));
-    //         // console.log(messages);
-    //     });
-    //     // console.log(messages);
-    // }, [])
-
-    
-    // socket.on('testing', function() {
-    //     console.log('count');
-    // });
-    // console.log('messages board');
-    console.log(messages);
 
     useEffect(() => {
         var mb = document.getElementsByClassName('messages-board__stick-bottom')[0];
         mb.scrollTop = mb.scrollHeight - mb.clientHeight; //messages board auto scroll bottom
-        // setActSend(false);  //set to false to prepare for catch state change for update scroll down AGAIN
     });
 
 

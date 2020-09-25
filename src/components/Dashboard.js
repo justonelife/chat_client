@@ -14,7 +14,6 @@ const Dashboard = () => {
     const user_id = localStorage.getItem('_id');
     const dispatch = useDispatch();
     const roomsData = useSelector(state => state.RoomsData);
-    console.log(roomsData);
 
     function handleFileUploaded(e) {
         setImgFile(e.target.files[0]);

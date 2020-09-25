@@ -1,8 +1,9 @@
 import React from 'react';
 import '../css/TypingBoard.css';
 
-const TypingBoard = () => {
-    const membersTyping = ['pen', 'eraser', 'gogo', 'monsterHunterReal', 'IamAsh', 'MashBro', 'Nunu'];
+const TypingBoard = (props) => {
+    const membersTyping = props.list;
+    // const membersTyping = [];
     var filMembersTyping = [];
 
     if (membersTyping.length > 6) {
@@ -11,23 +12,28 @@ const TypingBoard = () => {
     }
     else filMembersTyping = membersTyping;
 
-    console.log(typeof filMembersTyping.join(', '), filMembersTyping.join(', '));
-
     return (
         <div className='typing-board'>
-            <ul className='jumping-dots'>
-                <li className='jumping-dots__dot'></li>
-                <li className='jumping-dots__dot'></li>
-                <li className='jumping-dots__dot'></li>
-            </ul>
+            
+            {membersTyping.length > 0 ?
+                <ul className='jumping-dots'>
+                    <li className='jumping-dots__dot'></li>
+                    <li className='jumping-dots__dot'></li>
+                    <li className='jumping-dots__dot'></li>
+                </ul> : null
+            }
             <p className='typing-board__text'>
                 <strong className='typing-board__text__names'>
                     {filMembersTyping.join(', ')}
                 </strong>
-                <span className='typing-board__text__typing'> 
-                    {membersTyping.length > 1 ? 'are' : 'is'} typing
-                </span>
+
+                {membersTyping.length > 0 ?
+                    <span className='typing-board__text__typing'> 
+                        {membersTyping.length > 1 ? 'are' : 'is'} typing
+                    </span> : null
+                }
             </p>
+
         </div>
     );
 }

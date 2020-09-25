@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
-import ChatPage from './components/ChatPage';
+import ChatPageInit from './components/ChatPageInit';
 import SignUpPage from './components/SignUpPage';
-import FetchData from './components/FetchData';
 import './css/App.css';
 import { socket } from './components/Socket';
 
@@ -20,8 +19,7 @@ const App = () => {
                 <LoginPage />
             </Route>
             <Route path='/chat'>
-                <FetchData />
-                <ChatPage />
+                <ChatPageInit />
             </Route>
             <Route path='/signup'>
                 <SignUpPage />
