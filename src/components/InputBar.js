@@ -14,10 +14,12 @@ const InputBar = () => {
     const channelId = sessionStorage.getItem('selected_channel');
 
     useEffect(() => {
+        let mounted = true;
         socket.on('green light typing', () => {
-            console.log('green light');
+            if (mounted) setIsTyping(false);
         });
 
+        return () => mounted = false;
 
     }, []);
 
@@ -59,10 +61,7 @@ const InputBar = () => {
     
     function handlePasteRichText(e) {
         let paste = (e.clipboardData || window.clipboardData).getData('text/plain');
-        const selection = window.getSelection();
-        if (!selection.rangeCount) return false;
-        selection.deleteFromDocument();
-        selection.getRangeAt(0).insertNode(document.createTextNode(paste));
+        document.execCommand("inserttext", false, paste);
         setMessage(message => message + paste);
         e.preventDefault();
     }

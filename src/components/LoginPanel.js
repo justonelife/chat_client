@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/LoginPanel.css';
 
 const LoginPanel = () => {
 
-    var username = '';
-    var password = '';
+    const [wrongLoginNotify, setWrongLoginNotify] = useState('');
+
+    // var username = '';
+    // var password = '';
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState(''); 
 
     const history = useHistory();
 
@@ -47,14 +51,27 @@ const LoginPanel = () => {
                 localStorage.setItem('logged', 1);
                 localStorage.setItem('_id', data.user_id);
                 history.push('/chat');
+            } else {
+                switch(data.err) {
+                    case 'not exist':
+                        setWrongLoginNotify('username not exist');
+                        break;
+                    case 'wrong password':
+                        setWrongLoginNotify('wrong password');
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }
     function onUsernameChange(e) {
-        username = e.target.value;
+        // username = e.target.value;
+        setUsername(e.target.value);
     }
     function onPasswordChange(e) {
-        password = e.target.value;
+        // password = e.target.value;
+        setPassword(e.target.value);
     }
 
 
@@ -80,6 +97,8 @@ const LoginPanel = () => {
                         name='password'
                         onChange={onPasswordChange} />
                 </div>
+
+                {wrongLoginNotify && <p className='login-panel__alert'>{wrongLoginNotify}</p>}
 
                 <button className='login-panel__lbtn' onClick={onLoginBtnClick}>log in</button>
 

@@ -10,14 +10,13 @@
 .login-panel__header {
     font-family: 'Russo One', sans-serif;
     color: var(--second-theme-color);
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 400;
     text-transform: uppercase;
     text-align: center;
-    height: 59px;
+    height: 60px;
 }
 .finput {
-    width: 434px;
     height: 70px;
     background: var(--second-theme-color);
     border-radius: 35px;
@@ -30,14 +29,27 @@
     font-family: 'Quicksand', sans-serif;
     color: var(--main-theme-color);
 }
+.login-panel__alert {
+    color: #e74c3c;
+    font-family: 'Quicksand', sans-serif;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.login-panel__alert::before {
+    content: '[!]';
+    display: inline-block;
+    margin-right: 5px;
+}
 .login-panel__lbtn {
-    width: 243px;
-    height: 89px;
-    border-radius: 45px;
+    width: 50%;
+    height: 60px;
+    border-radius: 14px;
     background-color: #55E492;
     margin-top: 50px;
-    margin-left: 95px;
-    font-size: 25px;
+    margin-left: 25%;
+    font-size: 20px;
     font-family: 'Russo One', sans-serif;
     text-transform: uppercase;
     color: var(--second-theme-color);

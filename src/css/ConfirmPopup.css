@@ -11,19 +11,21 @@
     gap: 5px;
 }
 .confirm-popup__btn {
+    flex-grow: 1;
+}
+.rect-btn {
     font-family: 'Quicksand', sans-serif;
     color: #fff;
     height: 30px;
     line-height: 30px;
     width: 40px; 
-    flex-grow: 1;
     font-weight: bolder;
     text-transform: capitalize;
     border-radius: 5px;
 }
-.confirm-popup__btn--yes {
+.rect-btn--yes {
     background: #2ecc71;
 }
-.confirm-popup__btn--no {
+.rect-btn--no {
     background: #e74c3c;
 }

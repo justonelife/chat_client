@@ -3,28 +3,32 @@
 
 .login-page {
     height: 100vh;
+    min-height: 762px;
     width: 100%;
+    min-width: 529px;
     background: var(--main-theme-color);
 }
 .login-page__header {
     width: 100%;
-    height: 75px;
-    padding: 20px 0;
+    height: 62px;
+    padding-top: 20px;
 }
 .login-page__nav {
     width: 90%;
+    height: 100%;
 }
 .logo {
     background-image: url('./wachat_logo.png'); /*need find way to public directory*/
     background-repeat: no-repeat;
     background-position: center center;
-    width: 200px;
-    height: 50px;
+    width: 140px;
+    height: 35px;
+    background-size: cover;
     float: left;
 }
 .create-btn {
-    width: 265px;
-    height: 58px;
+    width: 185px;
+    height: 40px;
     float: right;
     background: transparent;
     border: 3px solid var(--second-theme-color);
@@ -32,5 +36,5 @@
     border-radius: 30px;
     font-family: 'Russo One', sans-serif;
     text-transform: capitalize;
-    font-size: 25px;
+    font-size: 16px;
 }

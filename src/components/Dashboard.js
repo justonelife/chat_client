@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/Dashboard.css';
 import ConfirmPopup from './ConfirmPopup';
+import UserInfoManager from './UserInfoManager';
 import { increaseAvatarUpdateCount } from '../actions';
 import { socket } from './Socket';
 
@@ -14,9 +15,15 @@ const Dashboard = () => {
     const user_id = localStorage.getItem('_id');
     const dispatch = useDispatch();
     const roomsData = useSelector(state => state.RoomsData);
+    const name = useSelector(state => state.NickName)
+
 
     function handleFileUploaded(e) {
-        setImgFile(e.target.files[0]);
+        if (e.target.files[0]) {
+            setImgFile(e.target.files[0]);
+        } else {
+            setImgFile({});
+        }
     }
     function saveBtnClick() {
 
@@ -67,11 +74,11 @@ const Dashboard = () => {
                     <FontAwesomeIcon icon='camera' />
                 </label>
                 {
-                    (imgFile.type === 'image/jpeg' || imgFile.type === 'image/png')
-                        ? <ConfirmPopup yesClick={saveBtnClick} noClick={cancelBtnClick} />
-                        : null
+                    (imgFile.type === 'image/jpeg' || imgFile.type === 'image/png') && 
+                    <ConfirmPopup yesClick={saveBtnClick} noClick={cancelBtnClick} />
                 }
             </div>
+            <UserInfoManager name={name} />
         </div>
     );
 }

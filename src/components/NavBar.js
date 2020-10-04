@@ -1,14 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import RoomItem from './RoomItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/NavBar.css';
 import Avatar from './Avatar';
 import { useHistory } from 'react-router-dom';
+import { selectChannel } from '../actions';
 
 
 const NavBar = () => {
     // console.log('nav bar');
+    const dispatch = useDispatch();
     const user_id = localStorage.getItem('_id');
     const history = useHistory();
     const user_nickname = useSelector(state => state.NickName);
@@ -41,7 +43,11 @@ const NavBar = () => {
                     <Avatar src={`http://localhost:5000/avatar/${user_id}`}
                         size={40} />
                 </div>
-                <button className='dashboard-btn'>
+                <button className='dashboard-btn'
+                        onClick={() => {
+                            sessionStorage.removeItem('selected_channel');
+                            dispatch(selectChannel(''));
+                        }}>
                     <FontAwesomeIcon icon='address-card' />
                 </button>
                 {/* <LogOutBtn /> */}
@@ -49,8 +55,8 @@ const NavBar = () => {
                 <button className='logout-btn' onClick={() => {
                     localStorage.removeItem('logged');
                     localStorage.removeItem('_id');
-                    // sessionStorage.setItem('selected_channel', 'dashboard');
-                    history.push('/');
+                    sessionStorage.removeItem('selected_channel');
+                    history.go('/');
                 }}>
                     <FontAwesomeIcon icon='sign-out-alt' />
                 </button>

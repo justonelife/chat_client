@@ -55,8 +55,6 @@ const ChatZone = (props) => {
         
     }, [dispatch, typingMems])
     
-    
-    console.log(typingMems);
 
     return (
         <div className='chat-zone'>

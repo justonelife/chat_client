@@ -55,6 +55,7 @@
     flex-grow: 1;
     position: relative;
 }
+
 .messages-board__stick-bottom {
     position: absolute;
     bottom: 0;
@@ -62,6 +63,19 @@
     width: 100%;
     overflow-y: scroll;
 }
+.messages-board__stick-bottom::-webkit-scrollbar {
+    width: 10px;
+}
+.messages-board__stick-bottom::-webkit-scrollbar-track {
+    background: #b7b7b72c;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+.messages-board__stick-bottom::-webkit-scrollbar-thumb {
+    background:#65676b;
+    border-radius: 5px;
+}
+
 .message-bar {
     min-height: 60px;
     height: auto;
@@ -82,7 +96,7 @@
     line-height: 20px;
     outline: none;
     overflow: scroll;
-    word-wrap: break-word;
+    /* word-wrap: break-word; */
     word-break: break-word;
     flex-grow: 2;
 }

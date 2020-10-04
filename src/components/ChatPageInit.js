@@ -12,24 +12,26 @@ const ChatPageInit = () => {
     const [isFetched, setIsFetched] = useState(false);
 
     useEffect(() => {
-        const data = {
-            user_id: localStorage.getItem('_id')
+        if (logState === 1) {
+            const data = {
+                user_id: localStorage.getItem('_id')
+            }
+            fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(data => {
+                dispatch(saveName(data.nickname));
+                dispatch(saveRoomsData(data.rooms));
+                setIsFetched(true);
+            });
         }
-        fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
-            dispatch(saveName(data.nickname));
-            dispatch(saveRoomsData(data.rooms));
-            setIsFetched(true);
-        });
-    }, [dispatch])
+    }, [dispatch, logState])
     
     if (logState === 1) {
         if (isFetched) {
