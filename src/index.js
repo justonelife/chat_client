@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faCaretDown, 
+import { faCaretDown,
+         faCaretRight, 
          faPlus, 
          faUserPlus, 
          faCog, 
@@ -22,7 +23,8 @@ import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 
 library.add(fab, 
-            faCaretDown, 
+            faCaretDown,
+            faCaretRight, 
             faPlus, 
             faUserPlus, 
             faCog, 

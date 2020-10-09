@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { createSelector } from 'reselect';
 import '../css/ChatZone.css';
 import ChatZoneHeader from './ChatZoneHeader';
 import MessagesBoard from './MessagesBoard';
@@ -16,9 +15,8 @@ import { increaseAvatarUpdateCount } from '../actions';
 const ChatZone = (props) => {
     
     const showMembers = useSelector(state => state.MembersBarState);
-    const [messages, setMessages] = useState(props.messages);
+    const [messages, setMessages] = useState(props.channelData.messages);
     const [typingMems, setTypingMems] = useState([]);
-    const channelData = props.channelData;
     const dispatch = useDispatch();
     
     
@@ -58,7 +56,7 @@ const ChatZone = (props) => {
 
     return (
         <div className='chat-zone'>
-            <ChatZoneHeader channelName={channelData.name} />
+            <ChatZoneHeader channelName={props.channelData.name} />
 
             <div className='chat-zone__content'>
                 <div className={'chat-zone__content__main' + (!showMembers ? ' chat-zone__content__main--active' : '')}>

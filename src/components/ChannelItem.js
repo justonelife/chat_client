@@ -17,7 +17,7 @@ const ChannelItem = (props) => {
 
     return (
         <React.Fragment>
-            <div className={'channel center-line' + (selectedChannel === props.id ? ' channel--active': '')} 
+            <div className={'channel center-line noselect' + (selectedChannel === props.id ? ' channel--active': '')} 
                  onClick={() => {
                     dispatch(selectChannel(props.id));
                     sessionStorage.setItem('selected_channel', props.id);

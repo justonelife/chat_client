@@ -127,7 +127,7 @@ const UserInfoManager = (props) => {
 
                 <form className='block mb-35'>
                     <label className='block__label' htmlFor='password'>password</label>
-                    <button className='block__btn rect-btn' 
+                    <button className='rect-btn block__btn' 
                             id='password'
                             type='button'
                             onClick={() => setShowChangePassWindow(true)}>change password</button>

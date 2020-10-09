@@ -7,7 +7,6 @@ import { socket } from './Socket';
 const ChatZoneInit = () => {
     const url = 'http://localhost:5000/channels';
     const [channelData, setChannelData] = useState({});
-    const [messages, setMessages] = useState([]);
     const [isFetched, setIsFetched] = useState(false);
     const name = useSelector(name => name.NickName);
 
@@ -31,7 +30,6 @@ const ChatZoneInit = () => {
         .then(res => res.json())
         .then(data => {
             setChannelData(data);
-            setMessages([]);
             setIsFetched(true);
         })
         
@@ -47,7 +45,7 @@ const ChatZoneInit = () => {
         <React.Fragment>
             {
                 isFetched 
-                    ? <ChatZone channelData={channelData} messages={messages} />
+                    ? <ChatZone channelData={channelData} />
                     : <Loading />
             }
         </React.Fragment>

@@ -24,10 +24,44 @@
 .room-item__caretBtn, .room-item__plusBtn {
     background: transparent;
     color: var(--dark-theme-chatpage-text-color);
+    min-width: 20px;
 }
 .room-item__caretBtn {
     font-size: 20px;
 }
 .channels-list {
     display: block;
+}
+
+.createChannel {
+    background: rgba(0, 0, 0, .44);
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    font-family: 'Quicksand', sans-serif;
+}
+.createChannel__cnt {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.createChannel__cnt__modal {
+    width: 410px;
+    height: 110px;
+    background: var(--dark-theme-chatpage-color-main);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    border-radius: 6px;
+    padding: 10px;
+    color: var(--dark-theme-chatpage-text-color);
+}
+.createChannel__cnt__modal__label {
+    font-weight: lighter!important;
+}
+.createChannel__cnt__modal__finput {
+    background: #40444b!important;
 }

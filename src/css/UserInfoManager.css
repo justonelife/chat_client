@@ -35,7 +35,7 @@
 }
 .block__btn {
     background: #9B59B6;
-    width: 175px;
+    width: 175px!important;
     margin-right: 185px;
 }
 .block__select {
