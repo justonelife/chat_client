@@ -47,7 +47,7 @@ const RoomItem = (props) => {
         setNewChannelName(e.target.value);
     }
     function addNewChannel() {
-        // setChannelList
+        console.log(newChannelName);
     }
 
     return (
@@ -83,7 +83,8 @@ const RoomItem = (props) => {
 
                                 <ul className='macYnBtn float-right'>
                                     <li className='macYnBtn__btnWr'>
-                                        <button className='macYnBtn__btn macYnBtn__btn--purple'>
+                                        <button className='macYnBtn__btn macYnBtn__btn--purple'
+                                                onClick={addNewChannel}>
                                             <FontAwesomeIcon icon='check' />
                                         </button>
                                     </li>
