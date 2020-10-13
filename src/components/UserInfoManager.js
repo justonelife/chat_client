@@ -29,6 +29,18 @@ const UserInfoManager = (props) => {
     function handleTypeInConfirmPassword(e) {
         setConfirmPassword(e.target.value);
     }
+
+    function handleCancelName() {
+        setName(props.name);
+        setNameModifyStage(false);
+    }
+
+    function handleCancelPassword() {
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setShowChangePassWindow(false);
+    }
      
     function handleOkName(e) {
         e.preventDefault();
@@ -118,7 +130,9 @@ const UserInfoManager = (props) => {
                             </button>
                         </li>
                         <li className='macYnBtn__btnWr'>
-                            <button className='macYnBtn__btn macYnBtn__btn--grey'>
+                            <button className='macYnBtn__btn macYnBtn__btn--grey'
+                                    type='button'
+                                    onClick={handleCancelName}>
                                 <FontAwesomeIcon icon='times' />
                             </button>
                         </li>
@@ -145,7 +159,8 @@ const UserInfoManager = (props) => {
                                     </button>
                                 </li>
                                 <li className='macYnBtn__btnWr'>
-                                    <button className='macYnBtn__btn macYnBtn__btn--grey'>
+                                    <button className='macYnBtn__btn macYnBtn__btn--grey'
+                                            onClick={handleCancelPassword}>
                                         <FontAwesomeIcon icon='times' />
                                     </button>
                                 </li>
